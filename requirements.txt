@@ -1,0 +1,13 @@
+pandas 
+mlflow
+notebook
+numpy
+scikit-learn == 1.5.2
+matplotlib
+python-box
+pyYAML
+tqdm
+ensure
+joblib
+types-PyYAML
+streamlit

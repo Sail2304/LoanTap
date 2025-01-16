@@ -1,0 +1,54 @@
+[2025-01-16 11:18:39,213: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-01-16 11:18:39,229: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-01-16 11:18:39,246: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-01-16 11:18:39,247: INFO: common: created directory at: artifacts]
+[2025-01-16 11:18:39,250: INFO: common: created directory at: artifacts/data_ingestion]
+[2025-01-16 11:18:59,429: INFO: 107969220: artifacts/data_ingestion/data.zip download! with following info: 
+Connection: close
+Content-Length: 14894333
+Cache-Control: max-age=300
+Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; sandbox
+Content-Type: application/zip
+ETag: "36f4101cba8996ab3309d77e655d5c9e97efaf2ef1cd9491443e6cf88fb776bc"
+Strict-Transport-Security: max-age=31536000
+X-Content-Type-Options: nosniff
+X-Frame-Options: deny
+X-XSS-Protection: 1; mode=block
+X-GitHub-Request-Id: 3D99:9A68:1D200D:2B0E18:67889DB8
+Accept-Ranges: bytes
+Date: Thu, 16 Jan 2025 05:48:41 GMT
+Via: 1.1 varnish
+X-Served-By: cache-hyd1100030-HYD
+X-Cache: MISS
+X-Cache-Hits: 0
+X-Timer: S1737006520.294597,VS0,VE1068
+Vary: Authorization,Accept-Encoding,Origin
+Access-Control-Allow-Origin: *
+Cross-Origin-Resource-Policy: cross-origin
+X-Fastly-Request-ID: 34a4e35eb840125fcd01684fd5adf0761001bb01
+Expires: Thu, 16 Jan 2025 05:53:41 GMT
+Source-Age: 1
+
+]
+[2025-01-16 11:42:58,708: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-01-16 11:42:58,720: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-01-16 11:42:58,727: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-01-16 11:42:58,737: INFO: common: created directory at: artifacts]
+[2025-01-16 11:42:58,738: INFO: common: created directory at: artifacts/data_ingestion]
+[2025-01-16 11:42:58,739: INFO: 3028596636: File already exists]
+[2025-01-16 11:44:11,792: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-01-16 11:44:11,800: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-01-16 11:44:11,810: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-01-16 11:44:11,812: INFO: common: created directory at: artifacts]
+[2025-01-16 11:44:11,813: INFO: common: created directory at: artifacts/data_validation]
+[2025-01-17 01:31:12,538: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-01-17 01:31:12,571: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-01-17 01:31:12,594: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-01-17 01:31:12,598: INFO: common: created directory at: artifacts]
+[2025-01-17 01:31:12,603: INFO: common: created directory at: artifacts/data_transformation]
+[2025-01-17 01:33:26,292: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2025-01-17 01:33:26,297: INFO: common: yaml file: params.yaml loaded successfully]
+[2025-01-17 01:33:26,304: INFO: common: yaml file: schema.yaml loaded successfully]
+[2025-01-17 01:33:26,306: INFO: common: created directory at: artifacts]
+[2025-01-17 01:33:26,310: INFO: common: created directory at: artifacts/data_transformation]
+[2025-01-17 01:33:34,597: INFO: 2880737640: Train and test files created]
