@@ -1,6 +1,6 @@
 import os
-from src.OLAChurnPred import logger
-from src.OLAChurnPred.entity.config_entity import DataValidationConfig
+from src.LoanTapPred import logger
+from src.LoanTapPred.entity.config_entity import DataValidationConfig
 import pandas as pd
 
 class DataValidation:

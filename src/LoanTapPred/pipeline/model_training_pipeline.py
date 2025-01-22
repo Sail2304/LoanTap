@@ -1,6 +1,6 @@
-from src.OLAChurnPred.config.configuration import ConfigurationManager
-from src.OLAChurnPred.components.model_trainer import ModelTrainer
-from src.OLAChurnPred import logger
+from src.LoanTapPred.config.configuration import ConfigurationManager
+from src.LoanTapPred.components.model_trainer import ModelTrainer
+from src.LoanTapPred import logger
 
 
 STAGE_NAME="Model Training Stage"
@@ -17,7 +17,6 @@ class ModelTrainingPipeline:
 
 
 
-
 if __name__ == '__main__':
     try:
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
@@ -27,3 +26,5 @@ if __name__ == '__main__':
     except Exception as e:
         logger.exception(e)
         raise e
+    
+    

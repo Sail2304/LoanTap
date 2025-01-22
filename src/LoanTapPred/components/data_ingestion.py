@@ -1,7 +1,7 @@
 import urllib.request as request
-from src.OLAChurnPred import logger
+from src.LoanTapPred import logger
 import zipfile
-from src.OLAChurnPred.entity.config_entity import DataIngestionConfig
+from src.LoanTapPred.entity.config_entity import DataIngestionConfig
 import os
 
 ## component-Data Ingestion

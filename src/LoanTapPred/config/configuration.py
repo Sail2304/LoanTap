@@ -1,6 +1,6 @@
-from src.OLAChurnPred.constants import *
-from src.OLAChurnPred.utils.common import read_yaml, create_directories
-from src.OLAChurnPred.entity.config_entity import (DataIngestionConfig, 
+from src.LoanTapPred.constants import *
+from src.LoanTapPred.utils.common import read_yaml, create_directories
+from src.LoanTapPred.entity.config_entity import (DataIngestionConfig, 
                                                   DataValidationConfig, 
                                                   DataTransormationConfig,
                                                   ModelTrainerConfig,
@@ -54,15 +54,16 @@ class ConfigurationManager:
         data_transformation_config = DataTransormationConfig(
             root_dir=config.root_dir,
             data_path = config.data_path,
-            ohencoder_path=config.ohencoder_path
+            ohencoder_path=config.ohencoder_path,
+            le_grade_path=config.le_grade_path,
+            le_subgrade_path=config.le_subgrade_path,
+            le_emp_length_path=config.le_emp_length_path,
         )
 
         return data_transformation_config
-
     
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         config = self.config.model_trainer
-        params = self.params.Model_Params
         schema = self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
@@ -73,17 +74,11 @@ class ConfigurationManager:
             test_data_path=config.test_data_path,
             model_name=config.model_name,
             model_score=config.model_score,
-            learning_rate=params.learning_rate,
-            max_depth=params.max_depth,
-            max_features=params.max_features,
-            min_samples_leaf=params.min_samples_leaf,
-            min_samples_split=params.min_samples_split,
-            n_estimators=params.n_estimators,
+            scaler_path=config.scaler_path,
             target_column=schema.name
 
         )
         return model_trainer_config
-
     
     def get_model_evaluation_config(self)->ModelEvaluationConfig:
         config=self.config.model_evaluation

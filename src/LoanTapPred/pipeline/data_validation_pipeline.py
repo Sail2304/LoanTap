@@ -1,6 +1,6 @@
-from src.OLAChurnPred.config.configuration import ConfigurationManager
-from src.OLAChurnPred.components.data_validation import DataValidation
-from src.OLAChurnPred import logger
+from src.LoanTapPred.config.configuration import ConfigurationManager
+from src.LoanTapPred.components.data_validation import DataValidation
+from src.LoanTapPred import logger
 
 
 STAGE_NAME="Data validation Stage"

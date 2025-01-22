@@ -1,6 +1,6 @@
-from src.OLAChurnPred.config.configuration import ConfigurationManager
-from src.OLAChurnPred.components.data_transformation import DataTransormation
-from src.OLAChurnPred import logger
+from src.LoanTapPred.config.configuration import ConfigurationManager
+from src.LoanTapPred.components.data_transformation import DataTransormation
+from src.LoanTapPred import logger
 from pathlib import Path
 
 STAGE_NAME="Data transformation Stage"

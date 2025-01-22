@@ -22,7 +22,10 @@ class DataTransormationConfig:
     root_dir: Path
     data_path: Path
     ohencoder_path: Path
-
+    le_grade_path:  Path
+    le_subgrade_path: Path
+    le_emp_length_path: Path
+    
 @dataclass
 class ModelTrainerConfig:
     root_dir: Path
@@ -30,16 +33,9 @@ class ModelTrainerConfig:
     test_data_path: Path
     model_name: str
     model_score: Path
-    learning_rate: list
-    max_depth: list
-    max_features: list
-    min_samples_leaf: list
-    min_samples_split: list 
-    n_estimators: list
+    scaler_path: Path
     target_column: str
     
-
-
 
 @dataclass
 class ModelEvaluationConfig:

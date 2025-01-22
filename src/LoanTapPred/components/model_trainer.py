@@ -1,11 +1,12 @@
 import os
+from src.LoanTapPred import logger
 import pandas as pd
-from sklearn.model_selection import RandomizedSearchCV
-from sklearn.ensemble import GradientBoostingClassifier
-from src.OLAChurnPred.utils.common import save_bin
+from sklearn.linear_model import LogisticRegression
+from src.LoanTapPred.utils.common import save_bin
+from src.LoanTapPred.utils.data_transformation_utils import scale_data
 import joblib
-from src.OLAChurnPred.entity.config_entity import ModelTrainerConfig
-
+from imblearn.over_sampling import SMOTE
+from src.LoanTapPred.entity.config_entity import ModelTrainerConfig
 
 class ModelTrainer:
     def __init__(self, config: ModelTrainerConfig):
@@ -20,37 +21,26 @@ class ModelTrainer:
         
         X_test = test_data.drop(columns=[self.config.target_column])
         y_test = test_data[self.config.target_column]
-        random_grid = {
-               'n_estimators': self.config.n_estimators,
-               'max_features': [None,'sqrt'],
-               'max_depth': self.config.max_depth,
-               'min_samples_split': self.config.min_samples_split,
-               'min_samples_leaf': self.config.min_samples_leaf,
-               'learning_rate': self.config.learning_rate
-               }
         
-        gbc = GradientBoostingClassifier()
-        gbc_randomcv = RandomizedSearchCV(
-                                        estimator=gbc,
-                                        param_distributions=random_grid,
-                                        n_iter=100,
-                                        cv=4,
-                                        random_state=41, 
-                                        n_jobs = -1,
-                                        verbose=3,error_score='raise'
-                                        )
+        X_train_scaled=scale_data(X_train, os.path.join(self.config.root_dir, self.config.scaler_path))
         
-        gbc_randomcv.fit(X_train,y_train)
+        sm=SMOTE(random_state=42)
+        X_train_res,y_train_res=sm.fit_resample(X_train_scaled,y_train)
+        lr=LogisticRegression()
+        lr.fit(X_train_res,y_train_res)
+        print(lr.score(X_train_res,y_train_res))
         with open(os.path.join(self.config.model_score),'w') as f:
-            f.write(f'Best model score is: {gbc_randomcv.best_score_}\n')
-            f.write(f'Best model parameters are: {gbc_randomcv.best_params_}')
+            f.write(f'Model score is: {lr.score(X_train_res,y_train_res)}')
 
         
         
-        joblib.dump(gbc_randomcv.best_estimator_, os.path.join(self.config.root_dir, self.config.model_name))
+        joblib.dump(lr, os.path.join(self.config.root_dir, self.config.model_name))
 
 
         
 
 
 
+
+
+    

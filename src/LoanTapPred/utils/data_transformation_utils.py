@@ -25,6 +25,7 @@ def nominal_feature_encoding(df, path:Path):
     ohe_data=pd.DataFrame(ohe_encoded_features, columns=ohe.get_feature_names_out())
     df = pd.concat([df, ohe_data], axis=1)
     df = df.drop(columns=['term','home_ownership','verification_status','purpose','initial_list_status','application_type','zip_code', 'city_code'])
+    
     df['loan_status'] = df['loan_status'].apply(lambda x: 1 if x=='Charged Off' else 0)
     joblib.dump(ohe, path)
 
@@ -40,6 +41,16 @@ def ordinal_feature_encoding(df, ordinal_features:list, paths:list):
         joblib.dump(le, path)
 
     return df
+
+def drop_collinear_features(df):
+    df = df.drop(columns=['loan_amnt', 'int_rate', 'le_sub_grade','purpose_debt_consolidation', 'total_acc'])
+    return df
+
+def scale_data(df, scaler_path):
+    sc=StandardScaler()
+    X_scaled=sc.fit_transform(df)
+    joblib.dump(sc,scaler_path)
+    return X_scaled
 
     
 
