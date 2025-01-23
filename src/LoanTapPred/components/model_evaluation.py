@@ -6,8 +6,8 @@ import mlflow
 import mlflow.sklearn
 import numpy as np
 import joblib
-from src.OLAChurnPred.entity.config_entity import ModelEvaluationConfig
-from src.OLAChurnPred.utils.common import save_json
+from src.LoanTapPred.entity.config_entity import ModelEvaluationConfig
+from src.LoanTapPred.utils.common import save_json
 from pathlib import Path
 
 import os
@@ -31,15 +31,16 @@ class ModelEvaluation():
     def log_into_mlflow(self):
         test_data = pd.read_csv(self.config.test_data_path)
         model = joblib.load(self.config.model_path)
+        sc = joblib.load(self.config.scaler_path)
 
         X_test = test_data.drop(columns=[self.config.target_column])
         y_test = test_data[[self.config.target_column]]
-
+        X_test_scaled=sc.transform(X_test)
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
         with mlflow.start_run():
-            pred = model.predict(X_test)
+            pred = model.predict(X_test_scaled)
             (accuracy, precision, recall, f1, cm) = self.eval_metrics(y_test, pred)
             TN, FP, FN, TP = cm.ravel()
             # saving metrics as local
@@ -56,7 +57,6 @@ class ModelEvaluation():
             
             save_json(path=Path(self.config.metric_file_name), data=scores)
 
-            mlflow.log_params(self.config.all_params)
 
             mlflow.log_metric("accuracy", accuracy)
             mlflow.log_metric("precision", precision)
@@ -67,7 +67,11 @@ class ModelEvaluation():
             mlflow.log_metric("FP", FP)
             mlflow.log_metric("FN", FN)
             mlflow.log_metric("TP", TP)
+            mlflow.log_artifact(self.config.scaler_path)
             mlflow.log_artifact(self.config.ohencoder_path)
+            mlflow.log_artifact(self.config.le_grade_path)
+            mlflow.log_artifact(self.config.le_subgrade_path)
+            mlflow.log_artifact(self.config.le_emp_length_path)
 
             #model registery does not work with file store
             if tracking_url_type_store != "file":
@@ -75,10 +79,16 @@ class ModelEvaluation():
                 # There are other ways to use the Model Registry, which depends on the use case,
                 # please refer to the doc for more information:
                 # https://mlflow.org/docs/latest/model-registry.html#api-workflow
-                mlflow.sklearn.log_model(model, "model", registered_model_name="Gradient Boosting Model")
+                mlflow.sklearn.log_model(model, "model", registered_model_name="LoanTapLR")
             else:
                 mlflow.sklearn.log_model(model, "model")
     
+
+
+
+            
+
+
 
 
 

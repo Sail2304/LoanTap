@@ -1,6 +1,6 @@
-from src.OLAChurnPred.config.configuration import ConfigurationManager
-from src.OLAChurnPred.components.model_evaluation import ModelEvaluation
-from src.OLAChurnPred import logger
+from src.LoanTapPred.config.configuration import ConfigurationManager
+from src.LoanTapPred.components.model_evaluation import ModelEvaluation
+from src.LoanTapPred import logger
 
 
 STAGE_NAME="Model Evaluation Stage"

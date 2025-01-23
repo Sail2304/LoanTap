@@ -32,10 +32,19 @@ model_trainer:
 model_evaluation:
   root_dir: artifacts/model_evaluation
   test_data_path: artifacts/data_transformation/test.csv
-  ohencoder_path: artifacts/data_transformation/ohencoder.joblib
   model_path: artifacts/model_trainer/model.joblib
+  scaler_path: artifacts/model_trainer/scaler.joblib
+  ohencoder_path: artifacts/data_transformation/ohencoder.joblib
+  le_grade_path: artifacts/data_transformation/le_grade.joblib
+  le_subgrade_path: artifacts/data_transformation/le_subgrade.joblib
+  le_emp_length_path: artifacts/data_transformation/le_emp_length.joblib
   metric_file_name: artifacts/model_evaluation/metrics.json
+  mlflow_uri: https://dagshub.com/Sail2304/LoanTap.mlflow
 
 prediction_config:
   model_path: artifacts/model_trainer/model.joblib
+  scaler_path: artifacts/model_trainer/scaler.joblib
   ohencoder_path: artifacts/data_transformation/ohencoder.joblib
+  le_grade_path: artifacts/data_transformation/le_grade.joblib
+  le_subgrade_path: artifacts/data_transformation/le_subgrade.joblib
+  le_emp_length_path: artifacts/data_transformation/le_emp_length.joblib

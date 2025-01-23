@@ -9,7 +9,7 @@ def missing_value_imputation(df):
     df['mort_acc'] = df['mort_acc'].fillna(df.groupby('total_acc')['mort_acc'].transform('median'))
     ## drop missing values from remaining columns
     df = df.dropna()
-    df = df.reset_index()
+    df = df.reset_index(drop=True)
     return df
 
 def feature_engineering(df):
@@ -43,7 +43,7 @@ def ordinal_feature_encoding(df, ordinal_features:list, paths:list):
     return df
 
 def drop_collinear_features(df):
-    df = df.drop(columns=['loan_amnt', 'int_rate', 'le_sub_grade','purpose_debt_consolidation', 'total_acc'])
+    df = df.drop(columns=['int_rate', 'le_sub_grade','purpose_debt_consolidation', 'total_acc'])
     return df
 
 def scale_data(df, scaler_path):
@@ -59,6 +59,13 @@ def scale_data(df, scaler_path):
 
     
 
-    
+# Index(['loan_amnt', 'term', 'int_rate', 'installment', 'grade', 'sub_grade',
+#        'emp_title', 'emp_length', 'home_ownership', 'annual_inc',
+#        'verification_status', 'issue_d', 'loan_status', 'purpose', 'title',
+#        'dti', 'earliest_cr_line', 'open_acc', 'pub_rec', 'revol_bal',
+#        'revol_util', 'total_acc', 'initial_list_status', 'application_type',
+#        'mort_acc', 'pub_rec_bankruptcies', 'address'],
+#       dtype='object')
 
-    
+
+# 'address', 'issue_d','earliest_cr_line', 'emp_title', 'title', 'installment'

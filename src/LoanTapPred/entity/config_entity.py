@@ -41,9 +41,12 @@ class ModelTrainerConfig:
 class ModelEvaluationConfig:
     root_dir: Path
     test_data_path: Path
-    ohencoder_path: Path
     model_path: Path
-    all_params: dict
+    scaler_path: Path
+    ohencoder_path: Path
+    le_grade_path: Path
+    le_subgrade_path: Path
+    le_emp_length_path: Path
     metric_file_name: Path
     target_column: str
     mlflow_uri: str

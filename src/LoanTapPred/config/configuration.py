@@ -82,7 +82,6 @@ class ConfigurationManager:
     
     def get_model_evaluation_config(self)->ModelEvaluationConfig:
         config=self.config.model_evaluation
-        params=self.params.Final_Params
         schema = self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
@@ -90,12 +89,15 @@ class ConfigurationManager:
         model_evaluation_config = ModelEvaluationConfig(
             root_dir=config.root_dir,
             test_data_path=config.test_data_path,
-            ohencoder_path=config.ohencoder_path,
             model_path=config.model_path,
-            all_params=params,
+            scaler_path=config.scaler_path,
+            ohencoder_path=config.ohencoder_path,
+            le_grade_path=config.le_grade_path,
+            le_subgrade_path=config.le_subgrade_path,
+            le_emp_length_path=config.le_emp_length_path,
             metric_file_name=config.metric_file_name,
             target_column=schema.name,
-            mlflow_uri="https://dagshub.com/Sail2304/Ola-driver-churn.mlflow"
+            mlflow_uri=config.mlflow_uri
         )
 
         return model_evaluation_config
