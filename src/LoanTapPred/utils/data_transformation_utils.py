@@ -69,3 +69,25 @@ def scale_data(df, scaler_path):
 
 
 # 'address', 'issue_d','earliest_cr_line', 'emp_title', 'title', 'installment'
+# 'term','home_ownership','verification_status','purpose','initial_list_status','application_type','zip_code', 'city_code'
+#  int_rate', 'le_sub_grade','purpose_debt_consolidation', 'total_acc
+
+
+# loan_amnt Int,
+# annual_inc Int,
+# dti,
+# open_acc,
+# pub_rec,
+# revol_bal,
+# revol_util,
+# mort_acc,
+# pub_rec_bankruptcies,
+# term_60 months,
+# home_ownership_ANY,home_ownership_MORTGAGE,home_ownership_NONE,home_ownership_OTHER,home_ownership_OWN,
+# verification_status_Source Verified,verification_status_Verified,purpose_car,purpose_credit_card,
+# purpose_educational,purpose_home_improvement,purpose_house,purpose_major_purchase,purpose_medical,purpose_moving,purpose_other,purpose_renewable_energy,purpose_small_business,purpose_wedding,
+# initial_list_status_f,
+# application_type_DIRECT_PAY,application_type_JOINT,
+# zip_code_00813,zip_code_05113,zip_code_11650,zip_code_29597,zip_code_30723,zip_code_48052,zip_code_70466,zip_code_86630,zip_code_93700,
+# le_grade,
+# le_emp_length

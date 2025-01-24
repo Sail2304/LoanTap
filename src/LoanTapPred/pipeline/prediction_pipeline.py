@@ -2,6 +2,7 @@ import joblib
 from pathlib import Path
 import pandas as pd
 from src.LoanTapPred.utils.data_transformation_utils import drop_collinear_features
+import numpy as np
 
 # Index(['loan_amnt', 'term', 'int_rate', 'installment', 'grade', 'sub_grade',
 #        'emp_title', 'emp_length', 'home_ownership', 'annual_inc',
@@ -114,9 +115,10 @@ class InputData:
         
 def predict(data):
     model = joblib.load(Path('artifacts/model_trainer/model.joblib'))
-    pred = model.predict(data)
+    pred = model.predict(data)[0]
+    pred_prob = round(np.max(model.predict_proba(data)[0]),2)
     # res = model.predict(data.loc[0, :].to_numpy().reshape(1,-1))
-    return pred
+    return pred, pred_prob
 
 
 if __name__=="__main__":
@@ -124,8 +126,8 @@ if __name__=="__main__":
                       'Not Verified', 'vacation', 26.24, 16.0, 0.0, 36369.0, 41.8, 25.0, 
                       'w','INDIVIDUAL',0.0,0.0, '22690')
     data = Input.preprocess()
-    pred = predict(data)
-    print(pred[0])
+    pred, prob = predict(data)
+    print(pred, prob)
 
 
 #     loan_amnt,term,int_rate,installment,grade,sub_grade,emp_title,emp_length,home_ownership,annual_inc,verification_status,issue_d,loan_status,purpose,title,dti,earliest_cr_line,open_acc,pub_rec,revol_bal,revol_util,total_acc,initial_list_status,application_type,mort_acc,pub_rec_bankruptcies,address
